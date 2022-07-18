@@ -59,4 +59,7 @@
     <color name="md_theme_dark_shadow">#000000</color>
     <color name="md_theme_dark_surfaceTint">#ADC6FF</color>
     <color name="md_theme_dark_surfaceTintColor">#ADC6FF</color>
+
+    <color name="background_loading_screen_light">#BFFEFBFF</color>
+    <color name="background_loading_screen_dark">#BF1B1B1F</color>
 </resources>

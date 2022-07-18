@@ -27,5 +27,6 @@
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
         <item name="elevationOverlayColor">@color/md_theme_dark_surfaceTint</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
+        <item name="colorLoadingScreenBackground">@color/background_loading_screen_dark</item>
     </style>
 </resources>
