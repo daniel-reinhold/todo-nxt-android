@@ -1,7 +1,8 @@
-package de.todonxt
+package de.todonxt.core.mainactivity.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import de.todonxt.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
