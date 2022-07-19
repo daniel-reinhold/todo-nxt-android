@@ -1,14 +1,21 @@
 <resources>
     <string name="app_name">ToDoNxt</string>
+    <string name="format_date_time">MM/dd/YYYY, hh:mm a</string>
+    <string name="format_date">MM/dd/YYYY</string>
 
-    <string name="greeting_morning">Good morning</string>
-    <string name="greeting_day">Hello</string>
-    <string name="greeting_evening">Good evening</string>
-    <string name="greeting_night">Good night</string>
+    <string name="greeting_morning">Good morning!</string>
+    <string name="greeting_day">Good afternoon!</string>
+    <string name="greeting_evening">Good evening!</string>
+    <string name="greeting_night">Good night!</string>
+    <string name="all_day">All day</string>
 
-    <string name="dashboard">Dashboard</string>
-
+    <string name="title_dashboard">Dashboard</string>
     <string name="title_tasks">Tasks</string>
     <string name="title_labels">Labels</string>
     <string name="title_projects">Projects</string>
+
+    <string name="tasks_for_today">Today\'s Tasks</string>
+    <string name="no_tasks_today">There are no tasks today</string>
+    <string name="create_task">Create task</string>
+
 </resources>

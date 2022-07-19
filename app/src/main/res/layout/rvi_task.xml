@@ -31,6 +31,7 @@
                 app:chipIcon="@drawable/ic_clock" />
 
             <com.google.android.material.chip.Chip
+                android:text="@string/all_day"
                 android:layout_marginStart="6dp"
                 android:id="@+id/chipIsWholeDay"
                 style="@style/Widget.Material3.Chip.Assist"

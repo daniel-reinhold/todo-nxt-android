@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentDashboard"
         android:name="de.todonxt.feature.dashboard.presentation.DashboardFragment"
-        android:label="@string/dashboard"
+        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
 </navigation>

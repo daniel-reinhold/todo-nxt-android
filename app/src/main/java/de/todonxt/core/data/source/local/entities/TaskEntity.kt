@@ -1,5 +1,6 @@
 package de.todonxt.core.data.source.local.entities
 
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -22,4 +23,17 @@ data class TaskEntity(
 
     @ColumnInfo(name = "is_whole_day")
     var isWholeDay: Boolean
-)
+) {
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TaskEntity>() {
+            override fun areItemsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
+}

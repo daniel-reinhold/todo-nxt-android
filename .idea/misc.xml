@@ -5,9 +5,10 @@
       <map>
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/drawable/bg_popup_menu.xml" value="0.316" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/drawable/bg_popup_menu_dark.xml" value="0.316" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout-land/fragment_dashboard.xml" value="0.2625" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_loading_screen.xml" value="0.36666666666666664" />
-        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_dashboard_item.xml" value="0.33" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/test_menu.xml" value="0.36666666666666664" />

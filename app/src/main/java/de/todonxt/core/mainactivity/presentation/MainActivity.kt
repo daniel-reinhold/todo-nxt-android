@@ -2,14 +2,14 @@ package de.todonxt.core.mainactivity.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
 import de.todonxt.databinding.ActivityMainBinding
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.toolbar.title = getString(
+            binding.toolbar.setTitle(
                 when (destination.id) {
-                    R.id.fragmentDashboard -> R.string.dashboard
+                    R.id.fragmentDashboard -> R.string.title_dashboard
                     else -> R.string.app_name
                 }
             )
