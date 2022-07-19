@@ -9,7 +9,9 @@ class TaskRepository @Inject constructor(
     private val taskDao: TaskDao
 ) {
 
-    fun getTasks() = taskDao.getAll()
+    fun getTasks() = taskDao.getTasks()
+
+    fun getTasksForToday() = taskDao.getTasksForToday()
 
     suspend fun createTask(
         title: String,

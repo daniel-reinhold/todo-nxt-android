@@ -43,4 +43,10 @@
         <item name="android:textColor">@color/action_bar_subtitle_light_color</item>
     </style>
 
+    <style name="DefaultCard" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">?attr/colorPrimaryContainer</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardCornerRadius">12dp</item>
+    </style>
+
 </resources>
