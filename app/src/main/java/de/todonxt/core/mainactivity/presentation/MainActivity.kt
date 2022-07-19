@@ -4,11 +4,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import de.todonxt.R
+import de.todonxt.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    private val appBarConfiguration = AppBarConfiguration(
+        topLevelDestinationIds = setOf(
+            R.id.fragmentDashboard
+        )
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setSupportActionBar(binding.toolbar)
+
+        val navController = (
+            supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment
+        ).navController
+
+        binding.toolbar.setupWithNavController(
+            navController = navController,
+            configuration = appBarConfiguration
+        )
+
+        setContentView(binding.root)
     }
 }

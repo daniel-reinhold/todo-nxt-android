@@ -29,4 +29,13 @@
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         <item name="colorLoadingScreenBackground">@color/background_loading_screen_dark</item>
     </style>
+
+    <style name="ActionBarTitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Title">
+        <item name="android:textColor">@color/action_bar_title_dark_color</item>
+    </style>
+
+    <style name="ActionBarSubtitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Subtitle">
+        <item name="android:textColor">@color/action_bar_subtitle_dark_color</item>
+    </style>
+
 </resources>

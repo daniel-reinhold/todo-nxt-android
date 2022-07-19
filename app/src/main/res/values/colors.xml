@@ -60,6 +60,12 @@
     <color name="md_theme_dark_surfaceTint">#ADC6FF</color>
     <color name="md_theme_dark_surfaceTintColor">#ADC6FF</color>
 
+    <color name="action_bar_title_light_color">#1B1B1F</color>
+    <color name="action_bar_subtitle_light_color">#7C7C8D</color>
+
+    <color name="action_bar_title_dark_color">#E3E2E6</color>
+    <color name="action_bar_subtitle_dark_color">#807C8D</color>
+
     <color name="background_loading_screen_light">#BFFEFBFF</color>
     <color name="background_loading_screen_dark">#BF1B1B1F</color>
 </resources>
