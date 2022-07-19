@@ -7,6 +7,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
 import de.todonxt.core.ui.UNICODE_EMOJI_MOON
@@ -52,6 +53,12 @@ class DashboardFragment : Fragment() {
         )
 
         val taskAdapter = TaskAdapter().also { binding.recyclerViewTasks.adapter = it }
+
+        binding.buttonCreateTask.setOnClickListener {
+            findNavController().navigate(
+                DashboardFragmentDirections.actionDashboardToAddTask()
+            )
+        }
 
         launchAndRepeatWithViewLifecycle {
             launch {

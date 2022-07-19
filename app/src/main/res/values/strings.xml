@@ -8,6 +8,7 @@
     <string name="greeting_evening">Good evening!</string>
     <string name="greeting_night">Good night!</string>
     <string name="all_day">All day</string>
+    <string name="save">Save</string>
 
     <string name="title_dashboard">Dashboard</string>
     <string name="title_tasks">Tasks</string>
@@ -17,5 +18,11 @@
     <string name="tasks_for_today">Today\'s Tasks</string>
     <string name="no_tasks_today">There are no tasks today</string>
     <string name="create_task">Create task</string>
+
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="add_description">Add description</string>
+    <string name="remove_description">Remove description</string>
+    <string name="add_time">Add time</string>
 
 </resources>

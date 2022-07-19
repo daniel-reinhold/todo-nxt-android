@@ -9,6 +9,16 @@
         android:id="@+id/fragmentDashboard"
         android:name="de.todonxt.feature.dashboard.presentation.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/actionDashboardToAddTask"
+            app:destination="@id/fragmentAddTask" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAddTask"
+        android:name="de.todonxt.feature.add_task.presentation.CreateTaskFragment"
+        android:label="@string/create_task"
+        tools:layout="@layout/fragment_create_task" />
 
 </navigation>
