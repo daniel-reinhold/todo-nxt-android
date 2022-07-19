@@ -16,10 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:navigationIcon="@drawable/ic_back"
-            app:subtitle="Subtitle"
             app:subtitleCentered="true"
             app:subtitleTextAppearance="@style/ActionBarSubtitleTextAppearance"
-            app:title="Title"
             app:titleCentered="true"
             app:titleTextAppearance="@style/ActionBarTitleTextAppearance" />
 

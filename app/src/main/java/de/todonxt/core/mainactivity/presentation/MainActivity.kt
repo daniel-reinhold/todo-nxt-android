@@ -35,6 +35,15 @@ class MainActivity : AppCompatActivity() {
             configuration = appBarConfiguration
         )
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.toolbar.title = getString(
+                when (destination.id) {
+                    R.id.fragmentDashboard -> R.string.dashboard
+                    else -> R.string.app_name
+                }
+            )
+        }
+
         setContentView(binding.root)
     }
 }
