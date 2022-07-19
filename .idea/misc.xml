@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/drawable/bg_popup_menu.xml" value="0.316" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/drawable/bg_popup_menu_dark.xml" value="0.316" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_loading_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/test_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

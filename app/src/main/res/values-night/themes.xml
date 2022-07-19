@@ -28,6 +28,11 @@
         <item name="elevationOverlayColor">@color/md_theme_dark_surfaceTint</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         <item name="colorLoadingScreenBackground">@color/background_loading_screen_dark</item>
+
+        <item name="android:statusBarColor">@color/md_theme_dark_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+
+        <item name="popupMenuBackground">@drawable/bg_popup_menu_dark</item>
     </style>
 
     <style name="ActionBarTitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Title">

@@ -1,10 +1,12 @@
 package de.todonxt.feature.dashboard.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import de.todonxt.R
 import de.todonxt.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -18,7 +20,6 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

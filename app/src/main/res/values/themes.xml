@@ -28,6 +28,11 @@
         <item name="elevationOverlayColor">@color/md_theme_light_surfaceTint</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
         <item name="colorLoadingScreenBackground">@color/background_loading_screen_light</item>
+
+        <item name="android:statusBarColor">@color/md_theme_light_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="popupMenuBackground">@drawable/bg_popup_menu_light</item>
     </style>
 
     <style name="ActionBarTitleTextAppearance" parent="TextAppearance.Material3.ActionBar.Title">
