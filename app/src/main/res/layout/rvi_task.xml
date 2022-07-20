@@ -24,20 +24,19 @@
             android:orientation="horizontal">
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chipDate"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipIcon="@drawable/ic_calendar_today" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_marginStart="6dp"
                 android:id="@+id/chipTime"
                 style="@style/Widget.Material3.Chip.Assist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:chipIcon="@drawable/ic_clock" />
-
-            <com.google.android.material.chip.Chip
-                android:text="@string/all_day"
-                android:layout_marginStart="6dp"
-                android:id="@+id/chipIsWholeDay"
-                style="@style/Widget.Material3.Chip.Assist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:chipIcon="@drawable/ic_calendar_today" />
 
         </LinearLayout>
 

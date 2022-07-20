@@ -18,11 +18,11 @@ data class TaskEntity(
     @ColumnInfo(name = "description")
     var description: String?,
 
-    @ColumnInfo(name = "time")
-    var time: Calendar?,
+    @ColumnInfo(name = "date")
+    var date: Calendar?,
 
-    @ColumnInfo(name = "is_whole_day")
-    var isWholeDay: Boolean
+    @ColumnInfo(name = "time")
+    var time: Calendar?
 ) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TaskEntity>() {

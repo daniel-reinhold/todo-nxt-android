@@ -16,15 +16,15 @@ class TaskRepository @Inject constructor(
     suspend fun createTask(
         title: String,
         description: String?,
+        date: Calendar?,
         time: Calendar?,
-        isWholeDay: Boolean
     ) = taskDao.createTask(
         TaskEntity(
             id = null,
             title = title,
             description = description,
-            time = time,
-            isWholeDay = isWholeDay
+            date = date,
+            time = time
         )
     )
 

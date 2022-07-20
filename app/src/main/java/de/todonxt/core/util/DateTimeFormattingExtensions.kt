@@ -9,13 +9,13 @@ import java.util.*
 private fun formatBase(
     context: Context?,
     calendar: Calendar,
-    @StringRes formatResource: Int,
+    @StringRes formatResource: Int
 ): String {
     return context?.let {
         SimpleDateFormat(
             context.getString(formatResource),
             Locale.getDefault()
-        ).format(calendar)
+        ).format(calendar.time)
     } ?: "Formatting error"
 }
 
@@ -25,4 +25,8 @@ fun Calendar.formatDateTime(context: Context?): String {
 
 fun Calendar.formatDate(context: Context?): String {
     return formatBase(context, this, R.string.format_date)
+}
+
+fun Calendar.formatTime(context: Context?): String {
+    return formatBase(context, this, R.string.format_time)
 }

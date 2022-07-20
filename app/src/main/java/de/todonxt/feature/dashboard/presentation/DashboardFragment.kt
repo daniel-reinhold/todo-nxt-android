@@ -16,6 +16,7 @@ import de.todonxt.core.ui.UNICODE_EMOJI_SUNRISE
 import de.todonxt.core.ui.UNICODE_EMOJI_SUNSET
 import de.todonxt.core.util.asUnicode
 import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
+import de.todonxt.core.util.setActionBarTitle
 import de.todonxt.databinding.FragmentDashboardBinding
 import de.todonxt.feature.dashboard.data.ACTION_SHOW_LABELS
 import de.todonxt.feature.dashboard.data.ACTION_SHOW_PROJECTS
@@ -73,6 +74,7 @@ class DashboardFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        setActionBarTitle(R.string.title_dashboard)
 
         /**
          * 5-9: Morning

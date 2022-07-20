@@ -1,34 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditText
+    <data>
+
+        <variable
+            name="viewModel"
+            type="de.todonxt.feature.add_task.presentation.CreateTaskViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/hint_title"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textSize="20sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/hint_description"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:padding="12dp"
-        android:textSize="16sp" />
+        <EditText
+            android:id="@+id/textFieldTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/hint_title"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:nextFocusForward="@id/textFieldDescription"
+            android:padding="12dp"
+            android:text="@={viewModel.title}"
+            android:textSize="20sp" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/all_day" />
+        <EditText
+            android:id="@+id/textFieldDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/hint_description"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
+            android:text="@={viewModel.description}"
+            android:textSize="16sp" />
 
-</LinearLayout>
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDate"
+                style="@style/Widget.Material3.Chip.Input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isVisible="@{viewModel.dateSet}" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTime"
+                style="@style/Widget.Material3.Chip.Input.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:isVisible="@{viewModel.timeSet}" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAddDate"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/add_date"
+            app:icon="@drawable/ic_calendar_today"
+            app:isGone="@{viewModel.dateSet}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAddTime"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/add_time"
+            app:icon="@drawable/ic_clock"
+            app:isGone="@{viewModel.timeSet}" />
+
+    </LinearLayout>
+</layout>

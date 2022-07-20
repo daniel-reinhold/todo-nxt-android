@@ -9,6 +9,7 @@ import de.todonxt.core.data.source.local.entities.TaskEntity
 import de.todonxt.core.ui.viewholder.TaskViewHolder
 import de.todonxt.core.util.formatDate
 import de.todonxt.core.util.formatDateTime
+import de.todonxt.core.util.formatTime
 import de.todonxt.databinding.RviTaskBinding
 
 class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
@@ -28,19 +29,22 @@ class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALL
 
         holder.binding.textViewTitle.text = item.title
 
-        holder.binding.chipTime.apply {
-            visibility = if (item.time != null) View.VISIBLE else View.GONE
-            text = if (!item.isWholeDay) {
-                item.time?.formatDateTime(context)
-            } else {
-                item.time?.formatDate(context)
+        if (item.date != null) {
+            holder.binding.chipDate.apply {
+                text = item.date?.formatDate(context)
+                visibility = View.VISIBLE
             }
+        } else {
+            holder.binding.chipDate.visibility = View.GONE
         }
 
-        holder.binding.chipIsWholeDay.visibility = if (item.isWholeDay) {
-            View.VISIBLE
+        if (item.time != null) {
+            holder.binding.chipTime.apply {
+                text = item.time?.formatTime(context)
+                visibility = View.VISIBLE
+            }
         } else {
-            View.GONE
+            holder.binding.chipTime.visibility = View.GONE
         }
 
     }

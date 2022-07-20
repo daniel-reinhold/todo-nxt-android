@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/fragmentAddTask"
         android:name="de.todonxt.feature.add_task.presentation.CreateTaskFragment"
-        android:label="@string/create_task"
+        android:label="@string/button_add_task"
         tools:layout="@layout/fragment_create_task" />
 
 </navigation>

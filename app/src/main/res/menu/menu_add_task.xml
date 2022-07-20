@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/addTime"
-        android:icon="@drawable/ic_clock"
-        android:title="@string/add_time"
-        app:showAsAction="ifRoom" />
 
     <item
+        android:enabled="false"
         android:id="@+id/saveTask"
         android:icon="@drawable/ic_check"
         android:title="@string/save"
