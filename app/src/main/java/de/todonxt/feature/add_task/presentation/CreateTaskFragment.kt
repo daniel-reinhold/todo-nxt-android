@@ -8,6 +8,7 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat.CLOCK_12H
@@ -21,13 +22,11 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
-class CreateTaskFragment : Fragment(), MenuProvider {
+class CreateTaskFragment : Fragment() {
 
     private var _binding: FragmentCreateTaskBinding? = null
     private val binding get() = _binding!!
     private val viewModel: CreateTaskViewModel by viewModels()
-
-    private var menu: Menu? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +36,6 @@ class CreateTaskFragment : Fragment(), MenuProvider {
         _binding = FragmentCreateTaskBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
-        (activity as? MenuHost)?.addMenuProvider(
-            this,
-            viewLifecycleOwner,
-            Lifecycle.State.RESUMED
-        )
 
         binding.buttonAddDate.setOnClickListener {
             val timePicker = MaterialDatePicker.Builder.datePicker()
@@ -88,10 +81,14 @@ class CreateTaskFragment : Fragment(), MenuProvider {
             viewModel.clearTime()
         }
 
+        binding.buttonSave.setOnClickListener {
+            viewModel.saveTask()
+        }
+
         launchAndRepeatWithViewLifecycle {
             launch {
                 viewModel.formValid.collectLatest {
-                    menu?.findItem(R.id.saveTask)?.isEnabled = it
+                    binding.buttonSave.isEnabled = it
                 }
             }
 
@@ -107,6 +104,14 @@ class CreateTaskFragment : Fragment(), MenuProvider {
                 viewModel.time.collectLatest { time ->
                     time?.let {
                         binding.chipTime.text = it.formatTime(context)
+                    }
+                }
+            }
+
+            launch {
+                viewModel.taskCreated.collectLatest {
+                    if (it) {
+                        findNavController().navigateUp()
                     }
                 }
             }
@@ -128,21 +133,6 @@ class CreateTaskFragment : Fragment(), MenuProvider {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        this.menu = menu
-        menuInflater.inflate(R.menu.menu_add_task, menu)
-    }
-
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return when (menuItem.itemId) {
-            R.id.saveTask -> {
-                binding.textFieldTitle.hideKeyboard()
-                true
-            }
-            else -> false
-        }
     }
 
 }

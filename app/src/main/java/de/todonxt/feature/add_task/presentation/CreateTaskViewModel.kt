@@ -25,6 +25,8 @@ class CreateTaskViewModel @Inject constructor(
     val dateSet = MutableStateFlow(false)
     val timeSet = MutableStateFlow(false)
 
+    val taskCreated = MutableStateFlow(false)
+
     init {
         viewModelScope.launch {
             launch {
@@ -73,6 +75,19 @@ class CreateTaskViewModel @Inject constructor(
 
     fun clearTime() {
         this.time.value = null
+    }
+
+    fun saveTask() {
+        viewModelScope.launch {
+            taskRepository.createTask(
+                title = title.value,
+                description = description.value.ifBlank { null },
+                date = date.value,
+                time = time.value
+            )
+        }.invokeOnCompletion {
+            taskCreated.value = true
+        }
     }
 
 }

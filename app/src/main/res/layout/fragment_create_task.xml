@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="de.todonxt.feature.add_task.presentation.CreateTaskViewModel" />
@@ -61,27 +61,49 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonAddDate"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+        <RelativeLayout
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="6dp"
-            android:text="@string/add_date"
-            app:icon="@drawable/ic_calendar_today"
-            app:isGone="@{viewModel.dateSet}" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonAddTime"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="6dp"
-            android:text="@string/add_time"
-            app:icon="@drawable/ic_clock"
-            app:isGone="@{viewModel.timeSet}" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSave"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/save"
+                app:icon="@drawable/ic_save"
+                tools:ignore="RelativeOverlap" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddDate"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_date"
+                    app:icon="@drawable/ic_calendar_today"
+                    app:isGone="@{viewModel.dateSet}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddTime"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/add_time"
+                    app:icon="@drawable/ic_clock"
+                    app:isGone="@{viewModel.timeSet}" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 </layout>

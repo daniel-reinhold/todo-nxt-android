@@ -1,5 +1,6 @@
 package de.todonxt.feature.dashboard.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +22,8 @@ class DashboardViewModel @Inject constructor(
         viewModelScope.launch {
             launch {
                 tasks.collectLatest {
+                    Log.i("APP_TEST", "Amount of tasks: ${it.size}")
+
                     anyTasksForToday.value = it.isNotEmpty()
                 }
             }
