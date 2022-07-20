@@ -7,8 +7,12 @@ class LongCalendarConverter {
 
     @TypeConverter
     fun longToCalendar(value: Long?): Calendar? {
-        return Calendar.getInstance().apply {
-            timeInMillis = value ?: 0
+        return if (value != null) {
+            Calendar.getInstance().apply {
+                timeInMillis = value
+            }
+        } else {
+            null
         }
     }
 

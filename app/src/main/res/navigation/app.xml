@@ -13,12 +13,25 @@
         <action
             android:id="@+id/actionDashboardToAddTask"
             app:destination="@id/fragmentAddTask" />
+        <action
+            android:id="@+id/actionDashboardToTaskList"
+            app:destination="@id/fragmentTaskList" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentTaskList"
+        android:name="de.todonxt.feature.task_list.presentation.TaskListFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/fragment_task_list" >
+        <action
+            android:id="@+id/actionTaskListToAddTask"
+            app:destination="@id/fragmentAddTask" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentAddTask"
-        android:name="de.todonxt.feature.add_task.presentation.CreateTaskFragment"
-        android:label="@string/button_add_task"
+        android:name="de.todonxt.feature.task_add.presentation.CreateTaskFragment"
+        android:label="@string/title_create_task"
         tools:layout="@layout/fragment_create_task" />
 
 </navigation>

@@ -20,6 +20,7 @@
     <string name="tasks_for_today">Today\'s Tasks</string>
     <string name="no_tasks_today">There are no tasks today</string>
     <string name="button_add_task">Create task</string>
+    <string name="no_tasks">No tasks were found</string>
 
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>

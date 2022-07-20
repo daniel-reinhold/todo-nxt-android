@@ -1,6 +1,8 @@
 package de.todonxt.core.util
 
 import android.content.Context
+import android.content.res.Resources
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
@@ -44,4 +47,12 @@ fun View.hideKeyboard() {
 
 fun Fragment.setActionBarTitle(@StringRes titleResource: Int) {
     (activity as? AppCompatActivity)?.supportActionBar?.title = getString(titleResource)
+}
+
+fun Int.dp(): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    )
 }

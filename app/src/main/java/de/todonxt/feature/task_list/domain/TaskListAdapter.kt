@@ -1,23 +1,21 @@
-package de.todonxt.feature.dashboard.domain
+package de.todonxt.feature.task_list.domain
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import de.todonxt.core.data.source.local.entities.TaskEntity
 import de.todonxt.core.ui.viewholder.TaskViewHolder
 import de.todonxt.core.util.formatDate
-import de.todonxt.core.util.formatDateTime
 import de.todonxt.core.util.formatTime
 import de.todonxt.databinding.RviTaskBinding
 
-class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
+class TaskListAdapter(
+    val onClick: (task: TaskEntity) -> Unit
+) : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
-            RviTaskBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
+            RviTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -43,6 +41,10 @@ class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALL
             }
         } else {
             holder.binding.chipTime.visibility = View.GONE
+        }
+
+        holder.binding.root.setOnClickListener {
+            onClick.invoke(item)
         }
     }
 }

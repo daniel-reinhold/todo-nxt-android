@@ -46,7 +46,11 @@ class DashboardFragment : Fragment() {
         binding.recyclerViewOptions.adapter = DashboardItemAdapter.getInstance(
             onItemSelected = { option ->
                 when (option) {
-                    ACTION_SHOW_TASKS -> {}
+                    ACTION_SHOW_TASKS -> {
+                        findNavController().navigate(
+                            DashboardFragmentDirections.actionDashboardToTaskList()
+                        )
+                    }
                     ACTION_SHOW_LABELS -> {}
                     ACTION_SHOW_PROJECTS -> {}
                 }

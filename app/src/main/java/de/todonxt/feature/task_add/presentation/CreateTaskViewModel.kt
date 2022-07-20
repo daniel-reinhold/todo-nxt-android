@@ -1,4 +1,4 @@
-package de.todonxt.feature.add_task.presentation
+package de.todonxt.feature.task_add.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import de.todonxt.core.data.repository.TaskRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
