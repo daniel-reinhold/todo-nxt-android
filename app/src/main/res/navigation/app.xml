@@ -9,23 +9,29 @@
         android:id="@+id/fragmentDashboard"
         android:name="de.todonxt.feature.dashboard.presentation.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/actionDashboardToAddTask"
             app:destination="@id/fragmentAddTask" />
         <action
             android:id="@+id/actionDashboardToTaskList"
             app:destination="@id/fragmentTaskList" />
+        <action
+            android:id="@+id/actionDashboardToTaskDetails"
+            app:destination="@id/fragmentTaskDetails" />
     </fragment>
 
     <fragment
         android:id="@+id/fragmentTaskList"
         android:name="de.todonxt.feature.task_list.presentation.TaskListFragment"
         android:label="@string/title_tasks"
-        tools:layout="@layout/fragment_task_list" >
+        tools:layout="@layout/fragment_task_list">
         <action
             android:id="@+id/actionTaskListToAddTask"
             app:destination="@id/fragmentAddTask" />
+        <action
+            android:id="@+id/actionTaskListToTaskDetails"
+            app:destination="@id/fragmentTaskDetails" />
     </fragment>
 
     <fragment
@@ -33,5 +39,17 @@
         android:name="de.todonxt.feature.task_add.presentation.CreateTaskFragment"
         android:label="@string/title_create_task"
         tools:layout="@layout/fragment_create_task" />
+
+    <fragment
+        android:id="@+id/fragmentTaskDetails"
+        android:name="de.todonxt.feature.task_details.presentation.TaskDetailFragment"
+        android:label="@string/title_task_details"
+        tools:layout="@layout/fragment_task_details">
+
+        <argument
+            android:name="taskID"
+            app:argType="integer" />
+
+    </fragment>
 
 </navigation>

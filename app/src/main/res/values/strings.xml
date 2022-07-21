@@ -13,6 +13,7 @@
 
     <string name="title_dashboard">Dashboard</string>
     <string name="title_tasks">Tasks</string>
+    <string name="title_task_details">Task Details</string>
     <string name="title_create_task">Create task</string>
     <string name="title_labels">Labels</string>
     <string name="title_projects">Projects</string>
@@ -28,5 +29,13 @@
     <string name="remove_description">Remove description</string>
     <string name="add_date">Add date</string>
     <string name="add_time">Add time</string>
+    <string name="no_description">No description</string>
+    <string name="no_date">No date</string>
+    <string name="no_time">No time</string>
+    <string name="finish_task">Finish task</string>
+    <string name="delete_task">Delete task</string>
+
+    <string name="content_description_icon_clock">Clock icon</string>
+    <string name="content_description_icon_calendar">Calendar icon</string>
 
 </resources>

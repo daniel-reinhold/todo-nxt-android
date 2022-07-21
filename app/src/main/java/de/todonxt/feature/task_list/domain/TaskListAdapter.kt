@@ -11,7 +11,7 @@ import de.todonxt.core.util.formatTime
 import de.todonxt.databinding.RviTaskBinding
 
 class TaskListAdapter(
-    val onClick: (task: TaskEntity) -> Unit
+    val onClick: (taskID: Int) -> Unit
 ) : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
@@ -44,7 +44,7 @@ class TaskListAdapter(
         }
 
         holder.binding.root.setOnClickListener {
-            onClick.invoke(item)
+            onClick.invoke(item.id ?: 0)
         }
     }
 }

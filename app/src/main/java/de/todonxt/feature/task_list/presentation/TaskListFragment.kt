@@ -48,8 +48,10 @@ class TaskListFragment : Fragment() {
         }
 
         val adapter = TaskListAdapter(
-            onClick = { task ->
-                // TODO: Handle onClick
+            onClick = { taskID ->
+                findNavController().navigate(
+                    TaskListFragmentDirections.actionTaskListToTaskDetails(taskID)
+                )
             }
         ).also { binding.recyclerView.adapter = it }
 

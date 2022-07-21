@@ -57,7 +57,13 @@ class DashboardFragment : Fragment() {
             }
         )
 
-        val taskAdapter = TaskAdapter().also { binding.recyclerViewTasks.adapter = it }
+        val taskAdapter = TaskAdapter(
+            onClick = { taskID ->
+                findNavController().navigate(
+                    DashboardFragmentDirections.actionDashboardToTaskDetails(taskID)
+                )
+            }
+        ).also { binding.recyclerViewTasks.adapter = it }
 
         binding.buttonCreateTask.setOnClickListener {
             findNavController().navigate(

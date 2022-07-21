@@ -13,6 +13,8 @@ class TaskRepository @Inject constructor(
 
     fun getTasksForToday() = taskDao.getTasksForToday()
 
+    fun findTask(id: Int) = taskDao.findTask(id)
+
     suspend fun createTask(
         title: String,
         description: String?,

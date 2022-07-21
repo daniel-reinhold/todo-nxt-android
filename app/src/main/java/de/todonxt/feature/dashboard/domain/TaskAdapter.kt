@@ -12,7 +12,9 @@ import de.todonxt.core.util.formatDateTime
 import de.todonxt.core.util.formatTime
 import de.todonxt.databinding.RviTaskBinding
 
-class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
+class TaskAdapter(
+    private val onClick: (taskID: Int) -> Unit
+) : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
             RviTaskBinding.inflate(
@@ -43,6 +45,10 @@ class TaskAdapter : ListAdapter<TaskEntity, TaskViewHolder>(TaskEntity.DIFF_CALL
             }
         } else {
             holder.binding.chipTime.visibility = View.GONE
+        }
+
+        holder.binding.root.setOnClickListener {
+            onClick.invoke(item.id ?: 0)
         }
     }
 }
