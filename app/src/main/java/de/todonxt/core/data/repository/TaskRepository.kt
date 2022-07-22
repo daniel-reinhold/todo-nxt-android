@@ -30,13 +30,26 @@ class TaskRepository @Inject constructor(
         )
     )
 
-    suspend fun updateTask(
+    suspend fun updateTaskTitle(
         task: TaskEntity,
-        title: String,
-        description: String?
+        title: String
     ) = task.apply {
         this.title = title
+    }.let {
+        taskDao.createTask(it)
+    }
+
+    suspend fun updateTaskDescription(
+        task: TaskEntity,
+        description: String?
+    ) = task.apply {
         this.description = description
+    }.let {
+        taskDao.createTask(it)
+    }
+
+    suspend fun updateTaskDate(task: TaskEntity, date: Calendar?) = task.apply {
+        this.date = date
     }.let {
         taskDao.createTask(it)
     }

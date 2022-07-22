@@ -1,231 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:overScrollMode="ifContentScrolls"
-    android:padding="16dp">
+<layout>
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="de.todonxt.feature.task_details.presentation.TaskDetailsViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:overScrollMode="ifContentScrolls"
+        android:padding="16dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewTitle"
-            style="@style/TextAppearance.Material3.DisplaySmall"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewDescription"
-                style="@style/TextAppearance.Material3.BodyLarge"
+                android:id="@+id/textViewTitle"
+                style="@style/TextAppearance.Material3.DisplaySmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_toStartOf="@id/buttonEditDescription" />
+                android:text="@{viewModel.title}"
+                android:textAlignment="center"
+                android:textStyle="bold" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonEditDescription"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="-1dp"
-                app:icon="@drawable/ic_edit" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/containerEditDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
-
-            <EditText
-                android:id="@+id/textFieldDescription"
-                style="@style/BorderlessTextFieldNormal"
+            <RelativeLayout
+                android:id="@+id/containerDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_toStartOf="@id/buttonSaveDescription"
-                android:background="@null"
-                android:hint="@string/hint_description"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine" />
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewDescription"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toStartOf="@id/buttonEditDescription" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonEditDescription"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="-1dp"
+                    app:icon="@drawable/ic_edit" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/containerEditDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:text="@={viewModel.descriptionTextFieldText}"
+                    android:id="@+id/textFieldDescription"
+                    style="@style/BorderlessTextFieldNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_toStartOf="@id/buttonSaveDescription"
+                    android:background="@null"
+                    android:hint="@string/hint_description"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSaveDescription"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    app:icon="@drawable/ic_check" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/containerNoDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewNoDescription"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/no_description"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddDescription"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_plus" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_icon_calendar"
+                    android:src="@drawable/ic_calendar_today" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewDate"
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonEditDate"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_edit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerNoDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewNoDate"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/no_date"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddDate"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_plus" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/content_description_icon_clock"
+                    android:src="@drawable/ic_clock" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewTime"
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:singleLine="true" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonEditTime"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_edit" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/containerNoTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewNoTime"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@string/no_time"
+                    android:textStyle="italic" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddTime"
+                    style="@style/Widget.Material3.Button.IconButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/ic_plus" />
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSaveDescription"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonFinishTask"
+                style="@style/DefaultButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/finish_task"
                 app:icon="@drawable/ic_check" />
 
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewNoDescription"
-                style="@style/TextAppearance.Material3.BodyLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:text="@string/no_description"
-                android:textStyle="italic" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonAddDescription"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_plus" />
-
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/content_description_icon_calendar"
-                android:src="@drawable/ic_calendar_today" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewDate"
-                style="@style/TextAppearance.Material3.TitleMedium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:singleLine="true" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonEditDate"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_edit" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewNoDate"
-                style="@style/TextAppearance.Material3.BodyLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="@string/no_date"
-                android:textStyle="italic" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonAddDate"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_plus" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/content_description_icon_clock"
-                android:src="@drawable/ic_clock" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewTime"
-                style="@style/TextAppearance.Material3.TitleMedium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:singleLine="true" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonEditTime"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_edit" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textViewNoTime"
-                style="@style/TextAppearance.Material3.BodyLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:gravity="center_vertical"
-                android:singleLine="true"
-                android:text="@string/no_time"
-                android:textStyle="italic" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonAddTime"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:icon="@drawable/ic_plus" />
-
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:layout_marginTop="16dp"
-            style="@style/DefaultButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/finish_task"
-            app:icon="@drawable/ic_check" />
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</layout>
