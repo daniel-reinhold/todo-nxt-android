@@ -7,14 +7,17 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
+import de.todonxt.core.ui.components.ConfirmationDialog
 import de.todonxt.core.ui.components.TextDialog
 import de.todonxt.core.util.*
 import de.todonxt.databinding.FragmentTaskDetailsBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.concurrent.fixedRateTimer
 
 @AndroidEntryPoint
 class TaskDetailFragment : Fragment(), MenuProvider {
@@ -44,7 +47,7 @@ class TaskDetailFragment : Fragment(), MenuProvider {
 
     private val clickListenerUpdateDescription = View.OnClickListener {
         TextDialog.show(
-            titleResource = R.string.update_description,
+            titleResource = R.string.dialog_title_update_description,
             predefinedText = viewModel.getDescriptionText(),
             onOkClicked = {
                 viewModel.updateDescription(it)
@@ -117,6 +120,14 @@ class TaskDetailFragment : Fragment(), MenuProvider {
                     }
                 }
             }
+
+            launch {
+                viewModel.taskDeleted.collectLatest {
+                    if (it) {
+                        findNavController().navigateUp()
+                    }
+                }
+            }
         }
 
         return binding.root
@@ -133,7 +144,31 @@ class TaskDetailFragment : Fragment(), MenuProvider {
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
+            R.id.itemChangeTitle -> {
+                TextDialog.show(
+                    titleResource = R.string.dialog_title_update_title,
+                    onOkClicked = { title ->
+                        title?.let {
+                            viewModel.updateTitle(it)
+                        }
+                    },
+                    predefinedText = viewModel.getTitleText(),
+                    fragmentManager = childFragmentManager
+                )
+
+                true
+            }
+
             R.id.itemDeleteTask -> {
+                ConfirmationDialog.show(
+                    titleResource = R.string.dialog_title_delete_task,
+                    text = getString(R.string.dialog_text_delete_task, viewModel.getTitleText()),
+                    onConfirm = {
+                        viewModel.delete()
+                    },
+                    fragmentManager = childFragmentManager
+                )
+
                 true
             }
             else -> false

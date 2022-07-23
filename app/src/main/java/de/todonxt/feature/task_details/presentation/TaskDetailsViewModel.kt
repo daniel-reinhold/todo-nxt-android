@@ -23,8 +23,10 @@ class TaskDetailsViewModel @Inject constructor(
 
     private val taskID = MutableStateFlow<Int?>(null)
     private val task = MutableStateFlow<TaskEntity?>(null)
+    val taskDeleted = MutableStateFlow(false)
 
     internal sealed class UpdateType {
+        data class Title(val updatedTitle: String) : UpdateType()
         data class Description(val updatedDescription: String?) : UpdateType()
         data class Date(val updatedDate: Calendar?) : UpdateType()
         data class Time(val updatedTime: Calendar?) : UpdateType()
@@ -65,6 +67,10 @@ class TaskDetailsViewModel @Inject constructor(
         }
     }
 
+    fun getTitleText(): String? {
+        return task.value?.title
+    }
+
     fun getDescriptionText(): String? {
         return task.value?.description
     }
@@ -75,6 +81,12 @@ class TaskDetailsViewModel @Inject constructor(
 
     fun getTime(): Calendar? {
         return task.value?.time
+    }
+
+    fun updateTitle(title: String) {
+        update(
+            UpdateType.Title(title)
+        )
     }
 
     fun updateDescription(description: String?) {
@@ -99,6 +111,9 @@ class TaskDetailsViewModel @Inject constructor(
         task.value?.let { taskEntity ->
             viewModelScope.launch {
                 when (updateType) {
+                    is UpdateType.Title -> {
+                        taskRepository.updateTaskTitle(taskEntity, updateType.updatedTitle)
+                    }
                     is UpdateType.Description -> {
                         taskRepository.updateTaskDescription(taskEntity, updateType.updatedDescription)
                     }
@@ -115,6 +130,16 @@ class TaskDetailsViewModel @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    fun delete() {
+        viewModelScope.launch {
+            task.value?.let {
+                taskRepository.deleteTask(it)
+            }
+        }.invokeOnCompletion {
+            taskDeleted.value = true
         }
     }
 

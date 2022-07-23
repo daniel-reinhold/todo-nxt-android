@@ -12,6 +12,8 @@
     <string name="okay_abbr">OK</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string name="title_dashboard">Dashboard</string>
     <string name="title_tasks">Tasks</string>
@@ -34,10 +36,13 @@
     <string name="no_description">No description</string>
     <string name="no_date">No date</string>
     <string name="no_time">No time</string>
-    <string name="finish_task">Finish task</string>
-    <string name="delete_task">Delete task</string>
-    <string name="update_description">Description</string>
-
+    <string name="button_finish_task">Finish task</string>
+    <string name="menu_item_delete_task">Delete task</string>
+    <string name="menu_item_change_title">Change title</string>
+    <string name="dialog_title_update_title">Title</string>
+    <string name="dialog_title_update_description">Description</string>
+    <string name="dialog_title_delete_task">Delete task</string>
+    <string name="dialog_text_delete_task">Do you really want to delete the task \'%1$s\'?</string>
 
     <string name="content_description_icon_clock">Clock icon</string>
     <string name="content_description_icon_calendar">Calendar icon</string>
