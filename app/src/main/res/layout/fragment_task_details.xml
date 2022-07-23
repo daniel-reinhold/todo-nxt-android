@@ -33,16 +33,17 @@
                 android:id="@+id/containerDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="32dp">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:text="@{viewModel.description}"
                     android:id="@+id/textViewDescription"
                     style="@style/TextAppearance.Material3.BodyLarge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
                     android:layout_toStartOf="@id/buttonEditDescription" />
 
                 <com.google.android.material.button.MaterialButton
@@ -53,39 +54,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="-1dp"
                     app:icon="@drawable/ic_edit" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerEditDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
-
-                <EditText
-                    android:text="@={viewModel.descriptionTextFieldText}"
-                    android:id="@+id/textFieldDescription"
-                    style="@style/BorderlessTextFieldNormal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_toStartOf="@id/buttonSaveDescription"
-                    android:background="@null"
-                    android:hint="@string/hint_description"
-                    android:importantForAutofill="no"
-                    android:inputType="textMultiLine" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonSaveDescription"
-                    style="@style/Widget.Material3.Button.IconButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    app:icon="@drawable/ic_check" />
 
             </RelativeLayout>
 
@@ -237,7 +205,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonFinishTask"
-                style="@style/DefaultButton"
+                style="@style/PrimaryButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

@@ -68,4 +68,7 @@
 
     <color name="background_loading_screen_light">#BFFEFBFF</color>
     <color name="background_loading_screen_dark">#BF1B1B1F</color>
+
+    <color name="background_dialog_light">#BFFEFBFF</color>
+    <color name="background_dialog_dark">#BF1B1B1F</color>
 </resources>

@@ -9,7 +9,9 @@
     <string name="greeting_evening">Good evening!</string>
     <string name="greeting_night">Good night!</string>
     <string name="all_day">All day</string>
+    <string name="okay_abbr">OK</string>
     <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 
     <string name="title_dashboard">Dashboard</string>
     <string name="title_tasks">Tasks</string>
@@ -34,6 +36,8 @@
     <string name="no_time">No time</string>
     <string name="finish_task">Finish task</string>
     <string name="delete_task">Delete task</string>
+    <string name="update_description">Description</string>
+
 
     <string name="content_description_icon_clock">Clock icon</string>
     <string name="content_description_icon_calendar">Calendar icon</string>

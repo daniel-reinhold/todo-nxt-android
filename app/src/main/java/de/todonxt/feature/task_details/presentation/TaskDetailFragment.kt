@@ -10,11 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
+import de.todonxt.core.ui.components.TextDialog
 import de.todonxt.core.util.*
 import de.todonxt.databinding.FragmentTaskDetailsBinding
-import de.todonxt.feature.task_details.data.DateState
-import de.todonxt.feature.task_details.data.DescriptionState
-import de.todonxt.feature.task_details.data.TimeState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -25,11 +23,6 @@ class TaskDetailFragment : Fragment(), MenuProvider {
     private val binding get() = _binding!!
     private val viewModel: TaskDetailsViewModel by viewModels()
     private val arguments: TaskDetailFragmentArgs by navArgs()
-
-    private val clickListenerUpdateDescription = View.OnClickListener {
-        viewModel.startDescriptionEditMode()
-        binding.textFieldDescription.showKeyboard()
-    }
 
     private val clickListenerUpdateDate = View.OnClickListener {
         datePicker(
@@ -46,6 +39,17 @@ class TaskDetailFragment : Fragment(), MenuProvider {
             onTimeSet = {
                 viewModel.updateTime(it)
             }
+        )
+    }
+
+    private val clickListenerUpdateDescription = View.OnClickListener {
+        TextDialog.show(
+            titleResource = R.string.update_description,
+            predefinedText = viewModel.getDescriptionText(),
+            onOkClicked = {
+                viewModel.updateDescription(it)
+            },
+            fragmentManager = childFragmentManager
         )
     }
 
@@ -69,11 +73,6 @@ class TaskDetailFragment : Fragment(), MenuProvider {
         binding.buttonEditDescription.setOnClickListener(clickListenerUpdateDescription)
         binding.buttonAddDescription.setOnClickListener(clickListenerUpdateDescription)
 
-        binding.buttonSaveDescription.setOnClickListener {
-            viewModel.updateDescription(binding.textFieldDescription.text.toString())
-            binding.textFieldDescription.hideKeyboard()
-        }
-
         binding.buttonEditDate.setOnClickListener(clickListenerUpdateDate)
         binding.buttonAddDate.setOnClickListener(clickListenerUpdateDate)
 
@@ -82,62 +81,39 @@ class TaskDetailFragment : Fragment(), MenuProvider {
 
         launchAndRepeatWithViewLifecycle {
             launch {
-                viewModel.descriptionState.collectLatest { state ->
-                    when (state) {
-                        is DescriptionState.Empty -> {
-                            binding.containerDescription.visibility = View.GONE
-                            binding.containerEditDescription.visibility = View.GONE
-                            binding.containerNoDescription.visibility = View.VISIBLE
-                        }
-                        is DescriptionState.Set -> {
-                            binding.containerDescription.visibility = View.VISIBLE
-                            binding.containerEditDescription.visibility = View.GONE
-                            binding.containerNoDescription.visibility = View.GONE
-
-                            binding.textViewDescription.text = state.text
-                        }
-                        is DescriptionState.Edit -> {
-                            binding.containerDescription.visibility = View.GONE
-                            binding.containerEditDescription.visibility = View.VISIBLE
-                            binding.containerNoDescription.visibility = View.GONE
-                        }
-                        else -> {}
+                viewModel.description.collectLatest { description ->
+                    if (description != null) {
+                        binding.containerDescription.visibility = View.VISIBLE
+                        binding.containerNoDescription.visibility = View.GONE
+                    } else {
+                        binding.containerDescription.visibility = View.GONE
+                        binding.containerNoDescription.visibility = View.VISIBLE
                     }
                 }
             }
 
             launch {
-                viewModel.dateState.collectLatest { state ->
-                    when (state) {
-                        is DateState.Empty -> {
-                            binding.containerDate.visibility = View.GONE
-                            binding.containerNoDate.visibility = View.VISIBLE
-                        }
-                        is DateState.Set -> {
-                            binding.containerDate.visibility = View.VISIBLE
-                            binding.containerNoDate.visibility = View.GONE
-
-                            binding.textViewDate.text = state.date.formatDate(context)
-                        }
-                        else -> {}
+                viewModel.date.collectLatest { date ->
+                    if (date != null) {
+                        binding.containerDate.visibility = View.VISIBLE
+                        binding.containerNoDate.visibility = View.GONE
+                        binding.textViewDate.text = date.formatDate(context)
+                    } else {
+                        binding.containerDate.visibility = View.GONE
+                        binding.containerNoDate.visibility = View.VISIBLE
                     }
                 }
             }
 
             launch {
-                viewModel.timeState.collectLatest { state ->
-                    when (state) {
-                        is TimeState.Empty -> {
-                            binding.containerTime.visibility = View.GONE
-                            binding.containerNoTime.visibility = View.VISIBLE
-                        }
-                        is TimeState.Set -> {
-                            binding.containerTime.visibility = View.VISIBLE
-                            binding.containerNoTime.visibility = View.GONE
-
-                            binding.textViewTime.text = state.time.formatTime(context)
-                        }
-                        else -> {}
+                viewModel.time.collectLatest { time ->
+                    if (time != null) {
+                        binding.containerTime.visibility = View.VISIBLE
+                        binding.containerNoTime.visibility = View.GONE
+                        binding.textViewTime.text = time.formatTime(context)
+                    } else {
+                        binding.containerTime.visibility = View.GONE
+                        binding.containerNoTime.visibility = View.VISIBLE
                     }
                 }
             }

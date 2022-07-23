@@ -5,9 +5,6 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import de.todonxt.core.data.repository.TaskRepository
 import de.todonxt.core.data.source.local.entities.TaskEntity
-import de.todonxt.feature.task_details.data.DateState
-import de.todonxt.feature.task_details.data.DescriptionState
-import de.todonxt.feature.task_details.data.TimeState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,18 +16,16 @@ class TaskDetailsViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
-    val descriptionState = MutableStateFlow<DescriptionState?>(null)
-    val dateState = MutableStateFlow<DateState?>(null)
-    val timeState = MutableStateFlow<TimeState?>(null)
-
     val title = MutableStateFlow("")
-    val descriptionTextFieldText = MutableStateFlow("")
+    val description = MutableStateFlow<String?>(null)
+    val date = MutableStateFlow<Calendar?>(null)
+    val time = MutableStateFlow<Calendar?>(null)
 
     private val taskID = MutableStateFlow<Int?>(null)
     private val task = MutableStateFlow<TaskEntity?>(null)
 
     internal sealed class UpdateType {
-        data class Description(val updatedDescription: String) : UpdateType()
+        data class Description(val updatedDescription: String?) : UpdateType()
         data class Date(val updatedDate: Calendar?) : UpdateType()
         data class Time(val updatedTime: Calendar?) : UpdateType()
     }
@@ -55,39 +50,23 @@ class TaskDetailsViewModel @Inject constructor(
             // Update states when task data has changed
             launch {
                 task.collectLatest {
-                    descriptionState.value = null
-                    dateState.value = null
-                    timeState.value = null
+                    description.value = null
+                    date.value = null
+                    time.value = null
 
                     it?.let { taskEntity ->
                         title.value = taskEntity.title
-
-                        val description = taskEntity.description
-                        val date = taskEntity.date
-                        val time = taskEntity.time
-
-                        descriptionState.value = if (description != null) {
-                            descriptionTextFieldText.value = description
-                            DescriptionState.Set(description)
-                        } else {
-                            DescriptionState.Empty
-                        }
-
-                        dateState.value = if (date != null) {
-                            DateState.Set(date)
-                        } else {
-                            DateState.Empty
-                        }
-
-                        timeState.value = if (time != null) {
-                            TimeState.Set(time)
-                        } else {
-                            TimeState.Empty
-                        }
+                        description.value = taskEntity.description
+                        date.value = taskEntity.date
+                        time.value = taskEntity.time
                     }
                 }
             }
         }
+    }
+
+    fun getDescriptionText(): String? {
+        return task.value?.description
     }
 
     fun getDate(): Calendar? {
@@ -98,11 +77,7 @@ class TaskDetailsViewModel @Inject constructor(
         return task.value?.time
     }
 
-    fun startDescriptionEditMode() {
-        descriptionState.value = DescriptionState.Edit
-    }
-
-    fun updateDescription(description: String) {
+    fun updateDescription(description: String?) {
         update(
             UpdateType.Description(description)
         )
