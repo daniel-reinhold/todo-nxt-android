@@ -50,12 +50,19 @@ class TaskRepository @Inject constructor(
 
     suspend fun updateTaskDate(task: TaskEntity, date: Calendar?) = task.apply {
         this.date = date
+        if (date == null) {
+            this.time = null
+        }
     }.let {
         taskDao.createTask(it)
     }
 
     suspend fun updateTaskTime(task: TaskEntity, time: Calendar?) = task.apply {
         this.time = time
+
+        if (this.date == null) {
+            this.date = Calendar.getInstance()
+        }
     }.let {
         taskDao.createTask(it)
     }
