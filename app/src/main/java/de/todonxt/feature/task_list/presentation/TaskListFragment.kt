@@ -2,6 +2,7 @@ package de.todonxt.feature.task_list.presentation
 
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import de.todonxt.R
+import de.todonxt.core.ui.components.ChangeOrDeleteDialog
+import de.todonxt.core.util.datePicker
 import de.todonxt.core.util.dp
 import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
+import de.todonxt.core.util.timePicker
 import de.todonxt.databinding.FragmentTaskListBinding
 import de.todonxt.feature.task_list.domain.TaskListAdapter
 import kotlinx.coroutines.flow.collectLatest
@@ -52,11 +57,56 @@ class TaskListFragment : Fragment() {
                 findNavController().navigate(
                     TaskListFragmentDirections.actionTaskListToTaskDetails(taskID)
                 )
+            },
+            onDateClick = { task ->
+                ChangeOrDeleteDialog.show(
+                    property = getString(R.string.date),
+                    onOptionChangeClicked = {
+                        datePicker(
+                            selection = task.date,
+                            onDateSet = {
+                                viewModel.updateDate(
+                                    task = task,
+                                    date = it
+                                )
+                            }
+                        )
+                    },
+                    onOptionDeleteClicked = {
+                        viewModel.updateDate(
+                            task = task,
+                            date = null
+                        )
+                    },
+                    fragmentManager = childFragmentManager
+                )
+            },
+            onTimeClick = { task ->
+                ChangeOrDeleteDialog.show(
+                    property = getString(R.string.time),
+                    onOptionChangeClicked = {
+                        timePicker(
+                            selection = task.time,
+                            onTimeSet = {
+                                viewModel.updateTime(
+                                    task = task,
+                                    time = it
+                                )
+                            }
+                        )
+                    },
+                    onOptionDeleteClicked = {
+                        viewModel.updateTime(
+                            task = task,
+                            time = null
+                        )
+                    },
+                    fragmentManager = childFragmentManager
+                )
             }
         ).also { binding.recyclerView.adapter = it }
 
         binding.recyclerView.addItemDecoration(itemDecoration)
-
         binding.buttonCreateTask.setOnClickListener {
             findNavController().navigate(
                 TaskListFragmentDirections.actionTaskListToAddTask()
@@ -65,7 +115,7 @@ class TaskListFragment : Fragment() {
 
         launchAndRepeatWithViewLifecycle {
             viewModel.tasks.collectLatest {
-                adapter.submitList(it)
+                adapter.update(it.toList())
             }
         }
 

@@ -31,7 +31,9 @@ data class TaskEntity(
             }
 
             override fun areContentsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean {
-                return oldItem == newItem
+                return oldItem.title == newItem.title &&
+                       oldItem.date == newItem.date &&
+                       oldItem.time == newItem.time
             }
 
         }

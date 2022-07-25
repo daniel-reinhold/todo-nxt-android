@@ -22,8 +22,6 @@ class DashboardViewModel @Inject constructor(
         viewModelScope.launch {
             launch {
                 tasks.collectLatest {
-                    Log.i("APP_TEST", "Amount of tasks: ${it.size}")
-
                     anyTasksForToday.value = it.isNotEmpty()
                 }
             }
