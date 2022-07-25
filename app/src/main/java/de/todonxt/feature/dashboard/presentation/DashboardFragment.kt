@@ -14,6 +14,7 @@ import de.todonxt.core.ui.UNICODE_EMOJI_MOON
 import de.todonxt.core.ui.UNICODE_EMOJI_SUN
 import de.todonxt.core.ui.UNICODE_EMOJI_SUNRISE
 import de.todonxt.core.ui.UNICODE_EMOJI_SUNSET
+import de.todonxt.core.ui.components.ChangeOrDeleteDialog
 import de.todonxt.core.util.asUnicode
 import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
 import de.todonxt.core.util.setActionBarTitle
@@ -78,6 +79,8 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
+
+        ChangeOrDeleteDialog.show("Date", {}, {}, childFragmentManager)
 
         return binding.root
     }

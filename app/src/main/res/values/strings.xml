@@ -44,7 +44,12 @@
     <string name="dialog_title_delete_task">Delete task</string>
     <string name="dialog_text_delete_task">Do you really want to delete the task \'%1$s\'?</string>
 
+    <string name="dialog_change_or_delete_title_change">Change %1$s</string>
+    <string name="dialog_change_or_delete_title_delete">Delete %1$s</string>
+
     <string name="content_description_icon_clock">Clock icon</string>
     <string name="content_description_icon_calendar">Calendar icon</string>
+    <string name="content_description_icon_edit">Pen icon</string>
+    <string name="content_description_icon_delete">Trash icon</string>
 
 </resources>
