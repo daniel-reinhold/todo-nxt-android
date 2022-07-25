@@ -80,8 +80,6 @@ class DashboardFragment : Fragment() {
             }
         }
 
-        ChangeOrDeleteDialog.show("Date", {}, {}, childFragmentManager)
-
         return binding.root
     }
 

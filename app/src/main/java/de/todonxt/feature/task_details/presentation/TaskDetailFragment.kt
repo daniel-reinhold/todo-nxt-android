@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
+import de.todonxt.core.ui.components.ChangeOrDeleteDialog
 import de.todonxt.core.ui.components.ConfirmationDialog
 import de.todonxt.core.ui.components.TextDialog
 import de.todonxt.core.util.*
@@ -27,7 +28,18 @@ class TaskDetailFragment : Fragment(), MenuProvider {
     private val viewModel: TaskDetailsViewModel by viewModels()
     private val arguments: TaskDetailFragmentArgs by navArgs()
 
-    private val clickListenerUpdateDate = View.OnClickListener {
+    private val updateDescription = {
+        TextDialog.show(
+            titleResource = R.string.dialog_title_update_description,
+            predefinedText = viewModel.getDescriptionText(),
+            onOkClicked = {
+                viewModel.updateDescription(it)
+            },
+            fragmentManager = childFragmentManager
+        )
+    }
+
+    private val updateDate = {
         datePicker(
             selection = viewModel.getDate(),
             onDateSet = {
@@ -36,23 +48,12 @@ class TaskDetailFragment : Fragment(), MenuProvider {
         )
     }
 
-    private val clickListenerUpdateTime = View.OnClickListener {
+    private val updateTime = {
         timePicker(
             selection = viewModel.getDate(),
             onTimeSet = {
                 viewModel.updateTime(it)
             }
-        )
-    }
-
-    private val clickListenerUpdateDescription = View.OnClickListener {
-        TextDialog.show(
-            titleResource = R.string.dialog_title_update_description,
-            predefinedText = viewModel.getDescriptionText(),
-            onOkClicked = {
-                viewModel.updateDescription(it)
-            },
-            fragmentManager = childFragmentManager
         )
     }
 
@@ -73,14 +74,41 @@ class TaskDetailFragment : Fragment(), MenuProvider {
             Lifecycle.State.RESUMED
         )
 
-        binding.buttonEditDescription.setOnClickListener(clickListenerUpdateDescription)
-        binding.buttonAddDescription.setOnClickListener(clickListenerUpdateDescription)
+        binding.buttonEditDescription.setOnClickListener {
+            ChangeOrDeleteDialog.show(
+                property = getString(R.string.description),
+                onOptionChangeClicked = updateDescription,
+                onOptionDeleteClicked = {
+                    viewModel.updateDescription(null)
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+        binding.buttonAddDescription.setOnClickListener(updateDescription)
 
-        binding.buttonEditDate.setOnClickListener(clickListenerUpdateDate)
-        binding.buttonAddDate.setOnClickListener(clickListenerUpdateDate)
+        binding.buttonEditDate.setOnClickListener {
+            ChangeOrDeleteDialog.show(
+                property = getString(R.string.date),
+                onOptionChangeClicked = updateDate,
+                onOptionDeleteClicked = {
+                    viewModel.updateDate(null)
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+        binding.buttonAddDate.setOnClickListener(updateDate)
 
-        binding.buttonEditTime.setOnClickListener(clickListenerUpdateTime)
-        binding.buttonAddTime.setOnClickListener(clickListenerUpdateTime)
+        binding.buttonEditTime.setOnClickListener {
+            ChangeOrDeleteDialog.show(
+                property = getString(R.string.time),
+                onOptionChangeClicked = updateTime,
+                onOptionDeleteClicked = {
+                    viewModel.updateTime(null)
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+        binding.buttonAddTime.setOnClickListener(updateTime)
 
         launchAndRepeatWithViewLifecycle {
             launch {

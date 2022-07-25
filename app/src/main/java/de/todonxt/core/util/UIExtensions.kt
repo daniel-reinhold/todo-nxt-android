@@ -1,6 +1,7 @@
 package de.todonxt.core.util
 
 import android.text.format.DateFormat
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -56,4 +57,10 @@ fun Fragment.timePicker(
     }
 
     timePicker.show(childFragmentManager, "TimePickerDialog")
+}
+
+fun View.setOnClickListener(listener: () -> Unit) {
+    this.setOnClickListener {
+        listener.invoke()
+    }
 }
