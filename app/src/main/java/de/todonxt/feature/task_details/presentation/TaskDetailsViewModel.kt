@@ -111,18 +111,17 @@ class TaskDetailsViewModel @Inject constructor(
         task.value?.let { taskEntity ->
             viewModelScope.launch {
                 when (updateType) {
-                    is UpdateType.Title -> {
+                    is UpdateType.Title ->
                         taskRepository.updateTaskTitle(taskEntity, updateType.updatedTitle)
-                    }
-                    is UpdateType.Description -> {
+
+                    is UpdateType.Description ->
                         taskRepository.updateTaskDescription(taskEntity, updateType.updatedDescription)
-                    }
-                    is UpdateType.Date -> {
+
+                    is UpdateType.Date ->
                         taskRepository.updateTaskDate(taskEntity, updateType.updatedDate)
-                    }
-                    is UpdateType.Time -> {
+
+                    is UpdateType.Time ->
                         taskRepository.updateTaskTime(taskEntity, updateType.updatedTime)
-                    }
                 }.let { entityID ->
                     task.value = null
                     taskRepository.findTask(entityID.toInt()).collectLatest { taskEntity ->

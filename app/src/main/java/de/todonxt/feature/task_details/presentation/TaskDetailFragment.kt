@@ -50,7 +50,7 @@ class TaskDetailFragment : Fragment(), MenuProvider {
 
     private val updateTime = {
         timePicker(
-            selection = viewModel.getDate(),
+            selection = viewModel.getTime(),
             onTimeSet = {
                 viewModel.updateTime(it)
             }
