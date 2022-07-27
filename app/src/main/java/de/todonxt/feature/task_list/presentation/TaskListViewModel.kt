@@ -16,14 +16,25 @@ class TaskListViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
-    val tasks = taskRepository.getTasks()
-    val anyTasks = MutableStateFlow(false)
+    val openTasks = taskRepository.getOpenTasks()
+    val doneTasks = taskRepository.getDoneTasks()
+
+    val anyOpenTasks = MutableStateFlow(false)
+    val anyDoneTasks = MutableStateFlow(false)
+
+    val containerDoneTasksVisible = MutableStateFlow(false)
 
     init {
         viewModelScope.launch {
             launch {
-                tasks.collectLatest {
-                    anyTasks.value = it.isNotEmpty()
+                openTasks.collectLatest {
+                    anyOpenTasks.value = it.isNotEmpty()
+                }
+            }
+
+            launch {
+                doneTasks.collectLatest {
+                    anyDoneTasks.value = it.isNotEmpty()
                 }
             }
         }
@@ -39,6 +50,10 @@ class TaskListViewModel @Inject constructor(
         viewModelScope.launch {
             taskRepository.updateTaskTime(task, time)
         }
+    }
+
+    fun toggleDoneTasksVisibility() {
+        containerDoneTasksVisible.value = !containerDoneTasksVisible.value
     }
 
 }

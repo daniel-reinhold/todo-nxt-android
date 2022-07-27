@@ -22,7 +22,10 @@ data class TaskEntity(
     var date: Calendar?,
 
     @ColumnInfo(name = "time")
-    var time: Calendar?
+    var time: Calendar?,
+
+    @ColumnInfo(name = "is_finished")
+    var isFinished: Boolean = false
 ) {
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<TaskEntity>() {
@@ -31,9 +34,7 @@ data class TaskEntity(
             }
 
             override fun areContentsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean {
-                return oldItem.title == newItem.title &&
-                       oldItem.date == newItem.date &&
-                       oldItem.time == newItem.time
+                return oldItem == newItem
             }
 
         }

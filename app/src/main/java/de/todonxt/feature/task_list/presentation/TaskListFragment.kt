@@ -9,17 +9,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
 import de.todonxt.core.ui.components.ChangeOrDeleteDialog
-import de.todonxt.core.util.datePicker
-import de.todonxt.core.util.dp
-import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
-import de.todonxt.core.util.timePicker
+import de.todonxt.core.util.*
 import de.todonxt.databinding.FragmentTaskListBinding
+import de.todonxt.feature.task_list.domain.TaskDoneListAdapter
 import de.todonxt.feature.task_list.domain.TaskListAdapter
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 @AndroidEntryPoint
 class TaskListFragment : Fragment() {
 
@@ -36,23 +39,7 @@ class TaskListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val itemDecoration = object : RecyclerView.ItemDecoration() {
-            override fun getItemOffsets(
-                outRect: Rect,
-                view: View,
-                parent: RecyclerView,
-                state: RecyclerView.State
-            ) {
-                val position = parent.getChildAdapterPosition(view)
-                val itemCount = state.itemCount
-
-                if (position != itemCount - 1) {
-                    outRect.bottom = 8.dp().toInt()
-                }
-            }
-        }
-
-        val adapter = TaskListAdapter(
+        val taskListAdapter = TaskListAdapter(
             onClick = { taskID ->
                 findNavController().navigate(
                     TaskListFragmentDirections.actionTaskListToTaskDetails(taskID)
@@ -104,18 +91,67 @@ class TaskListFragment : Fragment() {
                     fragmentManager = childFragmentManager
                 )
             }
-        ).also { binding.recyclerView.adapter = it }
+        ).also { binding.recyclerViewTasks.adapter = it }
 
-        binding.recyclerView.addItemDecoration(itemDecoration)
+        val taskDoneListAdapter = TaskDoneListAdapter().also {
+            binding.recyclerViewTasksDone.adapter = it
+        }
+
         binding.buttonCreateTask.setOnClickListener {
             findNavController().navigate(
                 TaskListFragmentDirections.actionTaskListToAddTask()
             )
         }
 
+        binding.headerDoneTasks.setOnClickListener {
+            viewModel.toggleDoneTasksVisibility()
+        }
+
+        context?.let {
+            binding.recyclerViewTasks.addItemDecoration(
+                object : RecyclerView.ItemDecoration() {
+                    override fun getItemOffsets(
+                        outRect: Rect,
+                        view: View,
+                        parent: RecyclerView,
+                        state: RecyclerView.State
+                    ) {
+                        val position = parent.getChildAdapterPosition(view)
+                        val itemCount = state.itemCount
+
+                        if (position != itemCount - 1) {
+                            outRect.bottom = 8.dp().toInt()
+                        }
+                    }
+                }
+            )
+
+            binding.recyclerViewTasksDone.addItemDecoration(
+                MaterialDividerItemDecoration(it, VERTICAL).apply {
+                    isLastItemDecorated = false
+                }
+            )
+        }
+
         launchAndRepeatWithViewLifecycle {
-            viewModel.tasks.collectLatest {
-                adapter.update(it.toList())
+            launch {
+                viewModel.openTasks.collectLatest {
+                    taskListAdapter.update(it)
+                }
+            }
+
+            launch {
+                viewModel.doneTasks.collectLatest {
+                    taskDoneListAdapter.update(it)
+                }
+            }
+
+            launch {
+                viewModel.containerDoneTasksVisible.collectLatest {
+                    binding.iconHeaderDoneTasks.setImageResource(
+                        if (it) R.drawable.ic_chevron_up else R.drawable.ic_chevron_down
+                    )
+                }
             }
         }
 

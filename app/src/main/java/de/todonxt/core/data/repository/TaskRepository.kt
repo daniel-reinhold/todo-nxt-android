@@ -9,7 +9,9 @@ class TaskRepository @Inject constructor(
     private val taskDao: TaskDao
 ) {
 
-    fun getTasks() = taskDao.getTasks()
+    fun getOpenTasks() = taskDao.getOpenTasks()
+
+    fun getDoneTasks() = taskDao.getDoneTasks()
 
     fun getTasksForToday() = taskDao.getTasksForToday()
 
@@ -20,7 +22,7 @@ class TaskRepository @Inject constructor(
         description: String?,
         date: Calendar?,
         time: Calendar?,
-    ) = taskDao.createTask(
+    ) = taskDao.createOrUpdateTask(
         TaskEntity(
             id = null,
             title = title,
@@ -36,7 +38,7 @@ class TaskRepository @Inject constructor(
     ) = task.apply {
         this.title = title
     }.let {
-        taskDao.createTask(it)
+        taskDao.createOrUpdateTask(it)
     }
 
     suspend fun updateTaskDescription(
@@ -45,7 +47,7 @@ class TaskRepository @Inject constructor(
     ) = task.apply {
         this.description = description
     }.let {
-        taskDao.createTask(it)
+        taskDao.createOrUpdateTask(it)
     }
 
     suspend fun updateTaskDate(task: TaskEntity, date: Calendar?) = task.apply {
@@ -54,7 +56,7 @@ class TaskRepository @Inject constructor(
             this.time = null
         }
     }.let {
-        taskDao.createTask(it)
+        taskDao.createOrUpdateTask(it)
     }
 
     suspend fun updateTaskTime(task: TaskEntity, time: Calendar?) = task.apply {
@@ -64,7 +66,13 @@ class TaskRepository @Inject constructor(
             this.date = Calendar.getInstance()
         }
     }.let {
-        taskDao.createTask(it)
+        taskDao.createOrUpdateTask(it)
+    }
+
+    suspend fun setDone(task: TaskEntity) = task.apply {
+        this.isFinished = true
+    }.let {
+        taskDao.createOrUpdateTask(it)
     }
 
     suspend fun deleteTask(task: TaskEntity) = taskDao.deleteTask(task)

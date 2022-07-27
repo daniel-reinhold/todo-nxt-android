@@ -108,7 +108,16 @@ class TaskDetailFragment : Fragment(), MenuProvider {
                 fragmentManager = childFragmentManager
             )
         }
+
         binding.buttonAddTime.setOnClickListener(updateTime)
+
+        binding.buttonFinishTask.setOnClickListener {
+            viewModel.setDone(
+                onComplete = {
+                    findNavController().navigateUp()
+                }
+            )
+        }
 
         launchAndRepeatWithViewLifecycle {
             launch {

@@ -132,6 +132,16 @@ class TaskDetailsViewModel @Inject constructor(
         }
     }
 
+    fun setDone(onComplete: () -> Unit) {
+        task.value?.let {
+            viewModelScope.launch {
+                taskRepository.setDone(it)
+            }.invokeOnCompletion {
+                onComplete.invoke()
+            }
+        }
+    }
+
     fun delete() {
         viewModelScope.launch {
             task.value?.let {
