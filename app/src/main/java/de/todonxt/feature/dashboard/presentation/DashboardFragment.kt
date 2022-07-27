@@ -1,5 +1,6 @@
 package de.todonxt.feature.dashboard.presentation
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.*
 import androidx.core.view.MenuHost
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
 import de.todonxt.core.ui.UNICODE_EMOJI_MOON
@@ -16,6 +18,7 @@ import de.todonxt.core.ui.UNICODE_EMOJI_SUNRISE
 import de.todonxt.core.ui.UNICODE_EMOJI_SUNSET
 import de.todonxt.core.ui.components.ChangeOrDeleteDialog
 import de.todonxt.core.util.asUnicode
+import de.todonxt.core.util.dp
 import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
 import de.todonxt.core.util.setActionBarTitle
 import de.todonxt.databinding.FragmentDashboardBinding
@@ -65,6 +68,24 @@ class DashboardFragment : Fragment() {
                 )
             }
         ).also { binding.recyclerViewTasks.adapter = it }
+
+        binding.recyclerViewTasks.addItemDecoration(
+            object : RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    val position = parent.getChildAdapterPosition(view)
+                    val itemCount = state.itemCount
+
+                    if (position != itemCount - 1) {
+                        outRect.bottom = 8.dp().toInt()
+                    }
+                }
+            }
+        )
 
         binding.buttonCreateTask.setOnClickListener {
             findNavController().navigate(
