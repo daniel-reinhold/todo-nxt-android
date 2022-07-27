@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import de.todonxt.core.data.repository.LabelRepository
 import de.todonxt.core.data.repository.TaskRepository
+import de.todonxt.core.data.source.local.dao.LabelDao
 import de.todonxt.core.data.source.local.dao.TaskDao
 import javax.inject.Singleton
 
@@ -14,8 +16,10 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideTaskRepository(taskDao: TaskDao): TaskRepository {
-        return TaskRepository(taskDao)
-    }
+    fun provideTaskRepository(taskDao: TaskDao): TaskRepository = TaskRepository(taskDao)
+
+    @Singleton
+    @Provides
+    fun provideLabelRepository(labelDao: LabelDao): LabelRepository = LabelRepository(labelDao)
 
 }

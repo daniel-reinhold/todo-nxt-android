@@ -1,5 +1,6 @@
 package de.todonxt.core.data.source.local.dao
 
+import androidx.annotation.WorkerThread
 import androidx.room.*
 import de.todonxt.core.data.source.local.entities.TaskEntity
 import kotlinx.coroutines.flow.Flow
@@ -19,9 +20,11 @@ interface TaskDao {
     @Query("SELECT * FROM tasks WHERE id = :id LIMIT 1")
     fun findTask(id: Int): Flow<TaskEntity?>
 
+    @WorkerThread
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun createOrUpdateTask(task: TaskEntity): Long
 
+    @WorkerThread
     @Delete
     suspend fun deleteTask(task: TaskEntity): Int
 

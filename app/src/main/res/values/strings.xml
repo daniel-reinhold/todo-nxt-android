@@ -58,4 +58,24 @@
     <string name="content_description_icon_delete">Trash icon</string>
     <string name="content_description_icon_chevron_up_down">Toggle visibility</string>
 
+    <string name="color_title_red">Shades of red</string>
+    <string name="color_title_pink">Shades of pink</string>
+    <string name="color_title_purple">Shades of purple</string>
+    <string name="color_title_deep_purple">Shades of deep purple</string>
+    <string name="color_title_indigo">Shades of indigo</string>
+    <string name="color_title_blue">Shades of blue</string>
+    <string name="color_title_light_blue">Shades of light blue</string>
+    <string name="color_title_cyan">Shades of cyan</string>
+    <string name="color_title_teal">Shades of teal</string>
+    <string name="color_title_green">Shades of green</string>
+    <string name="color_title_light_green">Shades of light green</string>
+    <string name="color_title_lime">Shades of lime</string>
+    <string name="color_title_yellow">Shades of yellow</string>
+    <string name="color_title_amber">Shades of amber</string>
+    <string name="color_title_orange">Shades of orange</string>
+    <string name="color_title_deep_orange">Shades of deep orange</string>
+    <string name="color_title_brown">Shades of brown</string>
+    <string name="color_title_gray">Shades of gray</string>
+    <string name="color_title_blue_gray">Shades of blue gray</string>
+
 </resources>

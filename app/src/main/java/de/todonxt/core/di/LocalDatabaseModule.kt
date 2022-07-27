@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import de.todonxt.core.data.source.local.LocalDatabase
+import de.todonxt.core.data.source.local.dao.LabelDao
 import de.todonxt.core.data.source.local.dao.TaskDao
 import javax.inject.Singleton
 
@@ -27,8 +28,10 @@ object LocalDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideTaskDao(db: LocalDatabase): TaskDao {
-        return db.getTaskDao()
-    }
+    fun provideTaskDao(db: LocalDatabase): TaskDao = db.getTaskDao()
+
+    @Singleton
+    @Provides
+    fun provideLabelDao(db: LocalDatabase): LabelDao = db.getLabelDao()
 
 }
