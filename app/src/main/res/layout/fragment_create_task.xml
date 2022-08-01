@@ -28,7 +28,6 @@
             android:text="@={viewModel.title}" />
 
         <EditText
-            android:padding="12dp"
             android:id="@+id/textFieldDescription"
             style="@style/BorderlessTextFieldNormal"
             android:layout_width="match_parent"
@@ -37,6 +36,7 @@
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
+            android:padding="12dp"
             android:text="@={viewModel.description}" />
 
         <com.google.android.material.chip.ChipGroup
@@ -45,6 +45,7 @@
             android:layout_marginHorizontal="16dp">
 
             <com.google.android.material.chip.Chip
+                android:checkable="false"
                 android:id="@+id/chipDate"
                 style="@style/Widget.Material3.Chip.Input"
                 android:layout_width="wrap_content"
@@ -52,11 +53,28 @@
                 app:isVisible="@{viewModel.dateSet}" />
 
             <com.google.android.material.chip.Chip
+                android:checkable="false"
                 android:id="@+id/chipTime"
-                style="@style/Widget.Material3.Chip.Input.Icon"
+                style="@style/Widget.Material3.Chip.Input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:isVisible="@{viewModel.timeSet}" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupLabels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/buttonAddLabel"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_label"
+                app:chipIcon="@drawable/ic_plus" />
 
         </com.google.android.material.chip.ChipGroup>
 

@@ -162,7 +162,13 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="DividerItemDecoration">
+    <style name="LabelChip" parent="Widget.Material3.Chip.Input">
+        <item name="closeIconVisible">true</item>
+        <item name="closeIcon">@drawable/ic_close</item>
+        <item name="android:closeIcon">@drawable/ic_close</item>
+    </style>
+
+    <style name="ActionChip" parent="Widget.Material3.Chip.Assist">
 
     </style>
 

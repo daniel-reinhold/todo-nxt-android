@@ -73,4 +73,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.5.0"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:2.5.0"
 
+    // Airbnb Paris
+    implementation 'com.airbnb.android:paris:2.0.0'
+    kapt 'com.airbnb.android:paris-processor:2.0.0'
 }

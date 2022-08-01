@@ -1,11 +1,15 @@
 package de.todonxt.feature.task_add.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat.CLOCK_12H
@@ -78,6 +82,12 @@ class CreateTaskFragment : Fragment() {
             viewModel.clearTime()
         }
 
+        binding.buttonAddLabel.setOnClickListener {
+            findNavController().navigate(
+                CreateTaskFragmentDirections.actionAddTaskToSelectLabels()
+            )
+        }
+
         binding.buttonSave.setOnClickListener {
             viewModel.saveTask()
         }
@@ -130,6 +140,16 @@ class CreateTaskFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun createLabelChip(title: String): Chip {
+        return (layoutInflater.inflate(
+            R.layout.component_label_chip,
+            null,
+            false
+        ) as Chip).apply {
+            text = title
+        }
     }
 
 }

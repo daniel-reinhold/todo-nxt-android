@@ -24,6 +24,8 @@ class CreateTaskViewModel @Inject constructor(
     val dateSet = MutableStateFlow(false)
     val timeSet = MutableStateFlow(false)
 
+    val anyLabelsSet = MutableStateFlow(false)
+
     val taskCreated = MutableStateFlow(false)
 
     init {

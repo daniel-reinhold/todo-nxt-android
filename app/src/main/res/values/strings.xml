@@ -38,6 +38,8 @@
     <string name="remove_description">Remove description</string>
     <string name="add_date">Add date</string>
     <string name="add_time">Add time</string>
+    <string name="add_label">Add label</string>
+    <string name="add_more_labels">Add more labels</string>
     <string name="no_description">No description</string>
     <string name="no_date">No date</string>
     <string name="no_time">No time</string>
@@ -49,6 +51,9 @@
     <string name="dialog_title_delete_task">Delete task</string>
     <string name="dialog_text_delete_task">Do you really want to delete the task \'%1$s\'?</string>
 
+    <string name="select_labels">Select labels</string>
+    <string name="no_labels">No labels were found</string>
+
     <string name="dialog_change_or_delete_title_change">Change %1$s</string>
     <string name="dialog_change_or_delete_title_delete">Delete %1$s</string>
 
@@ -57,6 +62,7 @@
     <string name="content_description_icon_edit">Pen icon</string>
     <string name="content_description_icon_delete">Trash icon</string>
     <string name="content_description_icon_chevron_up_down">Toggle visibility</string>
+    <string name="content_description_icon_check">Check icon</string>
 
     <string name="color_title_red">Shades of red</string>
     <string name="color_title_pink">Shades of pink</string>

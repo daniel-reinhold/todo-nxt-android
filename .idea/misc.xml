@@ -10,18 +10,24 @@
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout-land/fragment_dashboard.xml" value="0.2625" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_confirmation_dialog.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_label_chip.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_loading_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_text_dialog.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/dialog_change_or_delete.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_add_task.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_create_task.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_select_labels.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_task_details.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_task_list.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_dashboard_item.xml" value="0.33" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_label.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_label_selected.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task_done.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task_label.xml" value="0.20778110303548525" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/menu_add_task.xml" value="0.20863616930312098" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/menu_select_labels.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/menu_task_details.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/menu/test_menu.xml" value="0.36666666666666664" />
       </map>
