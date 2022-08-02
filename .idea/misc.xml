@@ -15,14 +15,20 @@
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/component_text_dialog.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/dialog_change_or_delete.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_add_task.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_create_label.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_create_task.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_pick_color.xml" value="0.20863616930312098" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_select_color.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_select_labels.xml" value="0.20863616930312098" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_task_details.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragment_task_list.xml" value="0.20863616930312098" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/fragmentcreate_label.xml" value="0.1" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_color.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_dashboard_item.xml" value="0.33" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_label.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_label_selected.xml" value="0.264" />
+        <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_select_color.xml" value="0.190625" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task.xml" value="0.4" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task_done.xml" value="0.264" />
         <entry key="..\:/Projects/Android/ToDoNxt/app/src/main/res/layout/rvi_task_label.xml" value="0.20778110303548525" />

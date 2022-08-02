@@ -24,6 +24,7 @@
     <string name="title_create_task">Create task</string>
     <string name="title_labels">Labels</string>
     <string name="title_projects">Projects</string>
+    <string name="title_create_label">Create label</string>
 
     <string name="tasks_for_today">Today\'s Tasks</string>
     <string name="no_tasks_today">There are no tasks today</string>
@@ -51,8 +52,12 @@
     <string name="dialog_title_delete_task">Delete task</string>
     <string name="dialog_text_delete_task">Do you really want to delete the task \'%1$s\'?</string>
 
+    <string name="label_name">Label name</string>
     <string name="select_labels">Select labels</string>
     <string name="no_labels">No labels were found</string>
+    <string name="title_color">Color</string>
+
+    <string name="pick_color">Pick color</string>
 
     <string name="dialog_change_or_delete_title_change">Change %1$s</string>
     <string name="dialog_change_or_delete_title_delete">Delete %1$s</string>

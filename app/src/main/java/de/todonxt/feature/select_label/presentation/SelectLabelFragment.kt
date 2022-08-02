@@ -5,6 +5,7 @@ import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import de.todonxt.R
 import de.todonxt.core.util.launchAndRepeatWithViewLifecycle
@@ -61,7 +62,9 @@ class SelectLabelFragment : Fragment(), MenuProvider {
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.itemAddLabel -> {
-                // TODO: Add label
+                findNavController().navigate(
+                    SelectLabelFragmentDirections.actionSelectLabelToCreateLabel()
+                )
                 true
             }
             else -> false
